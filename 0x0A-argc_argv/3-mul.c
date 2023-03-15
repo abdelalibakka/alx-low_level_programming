@@ -1,8 +1,5 @@
 #include <stdio.h>
-		
 #include "main.h"
-		
-
 		
 /**
 		
@@ -36,30 +33,24 @@ int _atoi(char *s)
 		
 	digit = 0;
 		
-
-		
 	while (s[len] != '\0')
 		
 		len++;
 		
-
-		
 	while (i < len && f == 0)
 		
 	{
-		
-		if (s[i] == '-')
-		
-			++d;
-		
 
+		if (s[i] == '-')
+
+			++d;
 		
 		if (s[i] >= '0' && s[i] <= '9')
 		
 		{
-		
-			digit = s[i] - '0';
-		
+	
+              		digit = s[i] - '0';
+	
 			if (d % 2)
 		
 				digit = -digit;
@@ -70,7 +61,7 @@ int _atoi(char *s)
 		
 			if (s[i + 1] < '0' || s[i + 1] > '9')
 		
-				break;
+              			break;
 		
 			f = 0;
 		
@@ -93,7 +84,7 @@ int _atoi(char *s)
 }
 		
 
-		
+
 /**
 		
  * main - multiplies two numbers
