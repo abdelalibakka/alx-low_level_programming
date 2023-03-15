@@ -1,34 +1,28 @@
-#include <stdio.h>		
 #include "main.h"
-
-		
+#include <stdio.h>
+#include <stdlib.h>
 /**
-		
- * main - print the number of arguments passed to the program
-		
- * @argc: number of arguments
-		
- * @argv: array of arguments
-		
- *
-		
- * Return: Always 0 (Success)
-		
+ * main - it all starts here
+ * @argc: the number of arguments
+ * @argv: array of pointers to arguments
+ * Return: Always 0.
  */
-		
 
-		
 int main(int argc, char *argv[])
-		
 {
-		
-(void) argv; /*Ignore argv*/
-		
-	printf("%d\n", argc - 1);
-		
+	int i, n, c = 0, COINS[] = {25, 10, 5, 2, 1};
 
-		
+	if (argc != 2)
+		return (printf("Error\n"), 1);
+	n = atoi(argv[1]);
+	if (n < 0)
+		return (puts("0"), 1);
+	for (i = 0; i < 5; i++)
+		if (n / COINS[i])
+		{
+			c += n / COINS[i];
+			n %= COINS[i];
+		}
+	printf("%d\n", c);
 	return (0);
-		
 }
-
