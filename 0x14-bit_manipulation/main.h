@@ -1,24 +1,25 @@
-/**
- * flip_bits - counts the number of bits to change
- * to get from one number to another
- * @n: first number
- * @m: second number
- *
- * Return: number of bits to change
- */
-unsigned int flip_bits(unsigned long int n, unsigned long int m)
-{
-	int i, count = 0;
-	unsigned long int current;
-	unsigned long int exclusive = n ^ m;
+#ifndef MAIN_H
 
-	for (i = 63; i >= 0; i--)
-	{
-		current = exclusive >> i;
-		if (current & 1)
-			count++;
-	}
+#define MAIN_H
 
-	return (count);
-}
 
+unsigned int binary_to_uint(const char *b);
+
+void print_binary(unsigned long int n);
+
+int get_bit(unsigned long int n, unsigned int index);
+
+int set_bit(unsigned long int *n, unsigned int index);
+
+int clear_bit(unsigned long int *n, unsigned int index);
+
+unsigned int flip_bits(unsigned long int n, unsigned long int m);
+
+int _atoi(const char *s);
+
+int _putchar(char c);
+
+int get_endianness(void);
+
+
+#endif
