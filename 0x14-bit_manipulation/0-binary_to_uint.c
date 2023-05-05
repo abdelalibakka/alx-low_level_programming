@@ -12,9 +12,7 @@ unsigned int binary_to_uint(const char *b)
 	int len = 0;
 
 	if (b == NULL)
-		return (0);
-
-	/* get length of binary string */
+		return (0);	
 	while (b[len])
 	{
 		if (b[len] != '0' && b[len] != '1')
@@ -22,7 +20,6 @@ unsigned int binary_to_uint(const char *b)
 		len++;
 	}
 
-	/* convert binary string to unsigned int */
 	for (int i = 0; i < len; i++)
 	{
 		result = result << 1;
