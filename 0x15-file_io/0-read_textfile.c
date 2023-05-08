@@ -4,7 +4,6 @@
  */
 #include "main.h"
 #include <stdlib.h>
-
 /**
  * read_textfile - Reads a text file and prints it to POSIX stdout.
  * @filename: A pointer to the name of the file.
@@ -15,28 +14,41 @@
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	ssize_t o, r, w;
-	char *buffer;
+	int fd;
+	ssize_t num_read, num_written;
+	char *buf;
 
-	if (filename == NULL)
+	if (!filename)
 		return (0);
 
-	buffer = malloc(sizeof(char) * letters);
-	if (buffer == NULL)
+	buf = malloc(sizeof(char) * letters);
+	if (!buf)
 		return (0);
 
-	o = open(filename, O_RDONLY);
-	r = read(o, buffer, letters);
-	w = write(STDOUT_FILENO, buffer, r);
-
-	if (o == -1 || r == -1 || w == -1 || w != r)
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
 	{
-		free(buffer);
+		free(buf);
 		return (0);
 	}
 
-	free(buffer);
-	close(o);
+	num_read = read(fd, buf, letters);
+	if (num_read == -1)
+	{
+		free(buf);
+		close(fd);
+		return (0);
+	}
 
-	return (w);
+	num_written = write(STDOUT_FILENO, buf, num_read);
+	if (num_written == -1 || num_written != num_read)
+	{
+		free(buf);
+		close(fd);
+		return (0);
+	}
+
+	free(buf);
+	close(fd);
+	return (num_written);
 }
